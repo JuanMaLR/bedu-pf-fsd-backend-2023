@@ -31,8 +31,8 @@ Sitio web para que usuarios puedan ingresar a buscar oportunidades de empleo del
 - Despliegue de ambas aplicaciones
 
 # Colaboradores
-Juan Manuel Ledesma Rangel
-Dylan Villareal Toscano
-José Zárate
-Lester Myers
-Alan Rodríguez
+- Juan Manuel Ledesma Rangel
+- Dylan Villareal Toscano
+- José Zárate
+- Lester Myers
+- Alan Rodríguez
