@@ -32,7 +32,7 @@ Sitio web para que usuarios puedan ingresar a buscar oportunidades de empleo del
 
 # Colaboradores
 Juan Manuel Ledesma Rangel
-Dylan 
+Dylan Villareal Toscano
 José Zárate
 Lester Myers
 Alan Rodríguez
