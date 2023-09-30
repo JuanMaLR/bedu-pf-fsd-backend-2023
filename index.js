@@ -1,6 +1,9 @@
 //To use env variables
 require("dotenv").config();
 
+//Imports
+const userRouter = require('./src/routers/user');
+
 //DB configuration
 const { initDatabase } = require("./db");
 initDatabase();
@@ -11,8 +14,7 @@ const app = express();
 app.use(express.json());
 
 //Routes
-
-//Include routes in app
+app.use(userRouter);
 
 //Manejo de errores
 
