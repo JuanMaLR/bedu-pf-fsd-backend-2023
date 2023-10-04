@@ -26,19 +26,19 @@ exports.createUser = async function (request, response) {
   //Check email is unique
   if (userWithEmail) {
     response.status(400).json({
-		message: 'El email proporcionado ya se encuentra registrado',
-		messagedev: 'Se encontro el usuario en la base de datos por email',
-		code: 'ERR_EMAIL',
-	  });;
+      message: 'El email proporcionado ya se encuentra registrado',
+      messagedev: 'Se encontro el usuario en la base de datos por email',
+      code: 'ERR_EMAIL',
+    });
   }
   //Check phone number is unique
   const userWithPhoneNumber = await findByPhoneNumber(phoneNumber);
   if (userWithPhoneNumber) {
     response.status(400).json({
-		message: 'El número de teléfono ya se encuentra registrado',
-		messagedev: 'Se encontro el usuario en la base de datos por número de teléfono',
-		code: 'ERR_PHONE_NUMBER',
-	  });;
+      message: 'El número de teléfono ya se encuentra registrado',
+      messagedev: 'Se encontro el usuario en la base de datos por número de teléfono',
+      code: 'ERR_PHONE_NUMBER',
+    });
   }
 
   const user = await insert(userData);
@@ -52,19 +52,19 @@ exports.updateUser = async function (request, response) {
   //Check email is unique
   if (userWithEmail) {
     response.status(400).json({
-		message: 'El email proporcionado ya se encuentra registrado',
-		messagedev: 'Se encontro el usuario en la base de datos por email',
-		code: 'ERR_EMAIL',
-	  });;
+      message: 'El email proporcionado ya se encuentra registrado',
+      messagedev: 'Se encontro el usuario en la base de datos por email',
+      code: 'ERR_EMAIL',
+    });
   }
   //Check phone number is unique
   const userWithPhoneNumber = await findByPhoneNumber(phoneNumber);
   if (userWithPhoneNumber) {
     response.status(400).json({
-		message: 'El número de teléfono ya se encuentra registrado',
-		messagedev: 'Se encontro el usuario en la base de datos por número de teléfono',
-		code: 'ERR_PHONE_NUMBER',
-	  });;
+      message: 'El número de teléfono ya se encuentra registrado',
+      messagedev: 'Se encontro el usuario en la base de datos por número de teléfono',
+      code: 'ERR_PHONE_NUMBER',
+    });
   }
 
   await update(id, { firstName, lastName, email, password, phoneNumber });

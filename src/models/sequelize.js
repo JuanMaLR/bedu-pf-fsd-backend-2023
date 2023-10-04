@@ -4,13 +4,13 @@ const { MYSQL_HOST, MYSQL_DATABASE, MYSQL_USERNAME, MYSQL_PASSWORD, FORCE_DB_UPD
   process.env;
 
 const sequelize = new Sequelize({
-        dialect: 'mysql',
-        host: MYSQL_HOST,
-        username: MYSQL_USERNAME,
-        password: MYSQL_PASSWORD,
-        database: MYSQL_DATABASE,
-        port: MYSQL_PORT,
-      });
+  dialect: 'mysql',
+  host: MYSQL_HOST,
+  username: MYSQL_USERNAME,
+  password: MYSQL_PASSWORD,
+  database: MYSQL_DATABASE,
+  port: MYSQL_PORT,
+});
 
 exports.sequelize = sequelize;
 
