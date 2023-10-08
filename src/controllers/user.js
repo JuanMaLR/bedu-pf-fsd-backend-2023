@@ -1,13 +1,13 @@
-const { obtainUsers, obtainUserById, insert, update, deleteById } = require("../services/user");
+const { findAll, findById, insert, update, deleteById } = require("../services/user");
 
 exports.getUsers = async function (request, response) {
-	const users = await obtainUsers();
+	const users = await findAll();
 	response.status(201).json(users);
 };
 
 exports.getUser = async function (request, response) {
 	const { id } = request.params;
-	const users = await obtainUserById(id);
+	const users = await findById(id);
 	response.status(201).json(users);
 };
 
