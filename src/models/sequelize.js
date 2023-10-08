@@ -6,6 +6,7 @@ const {
 	MYSQL_USERNAME,
 	MYSQL_PASSWORD,
 	FORCE_DB_UPDATE,
+	MYSQL_PORT,
 } = process.env;
 
 const sequelize = new Sequelize({
@@ -14,6 +15,7 @@ const sequelize = new Sequelize({
 	username: MYSQL_USERNAME,
 	password: MYSQL_PASSWORD,
 	database: MYSQL_DATABASE,
+	port: MYSQL_PORT,
 });
 
 exports.sequelize = sequelize;
