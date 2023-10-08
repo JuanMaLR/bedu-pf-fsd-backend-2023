@@ -3,8 +3,8 @@ require("dotenv").config();
 
 //Imports
 const userRouter = require('./src/routers/user');
-const validationError = require("./middlewares/validation-error");
-const unknownError = require("./middlewares/unknown-error");
+const validationError = require("./src/middlewares/validation-error");
+const unknownError = require("./src/middlewares/unknown-error");
 
 //DB configuration
 const { initDatabase } = require("./db");

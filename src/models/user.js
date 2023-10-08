@@ -23,7 +23,7 @@ module.exports = sequelize.define("user", {
 		},
 	},
     phoneNumber: {
-		type: DataTypes.STRING(7),
+		type: DataTypes.STRING(10),
 		allowNull: false,
 		unique: true,
 	},
