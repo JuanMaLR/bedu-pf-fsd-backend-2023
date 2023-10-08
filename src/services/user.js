@@ -1,5 +1,13 @@
 const User = require("../models/user");
 
+exports.obtainUsers = function () {
+	return User.findAll();
+};
+
+exports.obtainUserById = function (id) {
+	return User.findByPk(id);
+};
+
 exports.insert = function (data) {
 	return User.create(data);
 };
@@ -13,6 +21,6 @@ exports.update = async function (id, data) {
 };
 
 exports.deleteById = async function (id) {
-	const user = await Post.findByPk(id);
+	const user = await User.findByPk(id);
 	await user.destroy();
 };
