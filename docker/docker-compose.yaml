@@ -1,0 +1,23 @@
+version: "3"
+services:
+  mysql-db:
+    container_name: bedu-mysql-db
+    image: mysql:5.7
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+    ports:
+      - "${MYSQL_PORT}:3306"
+    volumes:
+      - ./database:/var/lib/mysql
+    networks:
+      - backend
+
+networks:
+  backend:
+
+volumes:
+  database:
+# docker compose --env-file ../.env up
+# docker compose start
