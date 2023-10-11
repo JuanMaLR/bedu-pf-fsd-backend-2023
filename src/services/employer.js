@@ -1,19 +1,19 @@
-const User = require("../models/user");
+const Employer = require("../models/employer");
 
 exports.findAll = function () {
-	return User.findAll();
+	return Employer.findAll();
 };
 
 exports.findById = function (id) {
-	return User.findByPk(id);
+	return Employer.findByPk(id);
 };
 
 exports.insert = function (data) {
-	return User.create(data);
+	return Employer.create(data);
 };
 
 exports.update = async function (id, data) {
-	await User.update(data, {
+	await Employer.update(data, {
 		where: {
 			id,
 		},
@@ -21,6 +21,6 @@ exports.update = async function (id, data) {
 };
 
 exports.deleteById = async function (id) {
-	const user = await User.findByPk(id);
+	const user = await Employer.findByPk(id);
 	await user.destroy();
 };

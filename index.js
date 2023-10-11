@@ -5,6 +5,7 @@ require("dotenv").config();
 const userRouter = require('./src/routers/user');
 const validationError = require("./src/middlewares/validation-error");
 const unknownError = require("./src/middlewares/unknown-error");
+const employerRouter = require('./src/routers/employer');
 
 //DB configuration
 const { initDatabase } = require("./db");
@@ -17,6 +18,7 @@ app.use(express.json());
 
 //Routes
 app.use(userRouter);
+app.use(employerRouter);
 
 //Manejo de errores
 app.use(validationError);
