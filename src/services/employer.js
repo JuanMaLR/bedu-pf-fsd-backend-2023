@@ -24,3 +24,19 @@ exports.deleteById = async function (id) {
 	const user = await Employer.findByPk(id);
 	await user.destroy();
 };
+
+exports.findByEmail = function (email) {
+	return Employer.findOne({
+		where: {
+			email,
+		},
+	});
+};
+
+exports.findByWebsite = function (website) {
+	return Employer.findOne({
+		where: {
+			website,
+		},
+	});
+};

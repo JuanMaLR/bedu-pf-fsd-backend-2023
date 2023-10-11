@@ -16,6 +16,14 @@ exports.findByEmail = function (email) {
 	});
 };
 
+exports.findByPhoneNumber = function (phoneNumber) {
+	return User.findOne({
+		where: {
+			phoneNumber,
+		},
+	});
+};
+
 exports.insert = function (data) {
 	return User.create(data);
 };

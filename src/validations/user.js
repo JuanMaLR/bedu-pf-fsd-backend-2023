@@ -36,5 +36,8 @@ exports.loginSchema = Joi.object({
   email: Joi.string().max(50).email().required(),
   password: Joi.string()
     .pattern(new RegExp(/(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[^A-Za-z0-9])(?=.{10,60})/))
+    .messages({
+      'string.pattern.base': `La contraseña debe contener una mayúscula, una minúscula, un caracter especial, un número y ser de al menos 10 caracteres`,
+    })
     .required(),
 });
