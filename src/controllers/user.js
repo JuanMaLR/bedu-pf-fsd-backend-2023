@@ -1,4 +1,4 @@
-const { findAll, findById, insert, update, deleteById } = require("../services/user");
+const { findAll, findById, insert, update, deleteById, findByEmail } = require("../services/user");
 
 exports.getUsers = async function (request, response) {
 	const users = await findAll();
@@ -13,8 +13,15 @@ exports.getUser = async function (request, response) {
 
 exports.createUser = async function (request, response) {
 	const userData = request.body;
-	const user = await insert(userData);
-	response.status(201).json(user);
+	const { email } = userData;
+	const userOnDB = await findByEmail(email);
+	if(!userOnDB){
+		const user = await insert(userData);
+		response.status(201).json(user);
+	}
+	
+	response.status(400).end(); 
+	
 };
 
 exports.updateUser = async function (request, response) {
