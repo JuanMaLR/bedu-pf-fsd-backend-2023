@@ -7,7 +7,7 @@ exports.login = async function (request, response) {
   const user = await findByEmail(email);
 
   if (!user) {
-    return response.status(401).json({
+    return response.status(400).json({
       message: 'Email o contraseña inválidos',
       messagedev: 'No se encontro el usuario en la base de datos',
       code: 'ERR_AUTH',
@@ -15,7 +15,7 @@ exports.login = async function (request, response) {
   }
 
   if (user.password !== password) {
-    return response.status(401).json({
+    return response.status(400).json({
       message: 'Email o contraseña inválidos',
       messagedev: 'No se encontro el usuario en la base de datos',
       code: 'ERR_AUTH',

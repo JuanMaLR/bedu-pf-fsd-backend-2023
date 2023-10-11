@@ -1,6 +1,6 @@
 /* eslint-disable no-undef */
 const { login } = require("../../src/controllers/auth");
-const { findById } = require("../../src/services/user");
+const { findByEmail } = require("../../src/services/user");
 const { sign } = require("jsonwebtoken");
 
 jest.mock("jsonwebtoken");
@@ -12,8 +12,8 @@ describe("Auth Controller Unit Test", () => {
 			// Arrange
 			const request = {
 				body: {
-					username: "test",
-					password: "123123123",
+					email: "jujuan27@hotmail.com",
+					password: "Amigo41*sdf",
 				},
 			};
 
@@ -22,10 +22,10 @@ describe("Auth Controller Unit Test", () => {
 				json: jest.fn(),
 			};
 
-			findById.mockResolvedValueOnce({
+			findByEmail.mockResolvedValueOnce({
 				id: 1,
-				username: "test",
-				password: "123123123",
+				email: "jujuan27@hotmail.com",
+				password: "Amigo41*sdf",
 			});
 
 			sign.mockReturnValue("esto-es-un-jwt-xd");
@@ -40,10 +40,10 @@ describe("Auth Controller Unit Test", () => {
 			});
 		});
 
-		it("should return an error 400 if the username doesnt exist", async () => {
+		it("should return an error 400 if the email doesnt exist", async () => {
 			const request = {
 				body: {
-					username: "test",
+					email: "test",
 					password: "781923891723981",
 				},
 			};
@@ -53,13 +53,13 @@ describe("Auth Controller Unit Test", () => {
 				json: jest.fn(),
 			};
 
-			findById.mockResolvedValueOnce(null);
+			findByEmail.mockResolvedValueOnce(null);
 
 			await login(request, response);
 
 			expect(response.status).toHaveBeenCalledWith(400);
 			expect(response.json).toHaveBeenCalledWith({
-				message: "Usuario o contraseña inválidos",
+				message: "Email o contraseña inválidos",
 				messagedev: "No se encontro el usuario en la base de datos",
 				code: "ERR_AUTH",
 			});
@@ -68,7 +68,7 @@ describe("Auth Controller Unit Test", () => {
 		it("should return an error 400 if the password is not the same", async () => {
 			const request = {
 				body: {
-					username: "test",
+					email: "jujuan27@hotmail.com",
 					password: "781923891723981",
 				},
 			};
@@ -78,9 +78,9 @@ describe("Auth Controller Unit Test", () => {
 				json: jest.fn(),
 			};
 
-			findById.mockResolvedValueOnce({
+			findByEmail.mockResolvedValueOnce({
 				id: 1,
-				username: "test",
+				email: "jujuan27@hotmail.com",
 				password: "unacontraseñatodachafaxd",
 			});
 
@@ -88,7 +88,7 @@ describe("Auth Controller Unit Test", () => {
 
 			expect(response.status).toHaveBeenCalledWith(400);
 			expect(response.json).toHaveBeenCalledWith({
-				message: "Usuario o contraseña inválidos",
+				message: "Email o contraseña inválidos",
 				messagedev: "No se encontro el usuario en la base de datos",
 				code: "ERR_AUTH",
 			});
