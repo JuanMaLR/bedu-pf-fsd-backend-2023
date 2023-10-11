@@ -3,6 +3,8 @@ require("dotenv").config();
 
 //Imports
 const userRouter = require('./src/routers/user');
+const validationError = require("./src/middlewares/validation-error");
+const unknownError = require("./src/middlewares/unknown-error");
 const employerRouter = require('./src/routers/employer');
 
 //DB configuration
@@ -19,6 +21,8 @@ app.use(userRouter);
 app.use(employerRouter);
 
 //Manejo de errores
+app.use(validationError);
+app.use(unknownError);
 
 app.listen(process.env.SERVER_PORT, function () {
 	console.log("Escuchando puerto " + process.env.SERVER_PORT);
