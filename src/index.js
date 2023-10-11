@@ -2,11 +2,11 @@
 require("dotenv").config();
 
 //Imports
-const userRouter = require('./src/routers/user');
-const authRouter = require("./src/routers/auth");
-const validationError = require("./src/middlewares/validation-error");
-const unknownError = require("./src/middlewares/unknown-error");
-const employerRouter = require('./src/routers/employer');
+const userRouter = require('./routers/user');
+const authRouter = require("./routers/auth");
+const validationError = require("./middlewares/validation-error");
+const unknownError = require("./middlewares/unknown-error");
+const employerRouter = require('./routers/employer');
 
 //DB configuration
 const { initDatabase } = require("./db");
