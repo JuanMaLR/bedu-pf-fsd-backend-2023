@@ -3,6 +3,7 @@ require("dotenv").config();
 
 //Imports
 const userRouter = require('./src/routers/user');
+const employerRouter = require('./src/routers/employer');
 
 //DB configuration
 const { initDatabase } = require("./db");
@@ -15,6 +16,7 @@ app.use(express.json());
 
 //Routes
 app.use(userRouter);
+app.use(employerRouter);
 
 //Manejo de errores
 
