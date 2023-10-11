@@ -1,9 +1,9 @@
-const { connect, sync } = require("./src/models/sequelize");
+const { connect, sync } = require("./models/sequelize");
 //Importar modelos
-const User = require('./src/models/user');
-const Post = require('./src/models/post');
-const Employer = require('./src/models/employer');
-const PositionType = require('./src/models/positionType');
+const User = require('./models/user');
+const Post = require('./models/post');
+const Employer = require('./models/employer');
+const PositionType = require('./models/positionType');
 
 //Definir las relaciónes de los usuarios
 // "Un usuario aplica a muchas vacantes"

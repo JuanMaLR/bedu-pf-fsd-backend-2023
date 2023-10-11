@@ -2,7 +2,7 @@
 require("dotenv").config();
 
 //Imports
-const userRouter = require('./src/routers/user');
+const userRouter = require('./routers/user');
 
 //DB configuration
 const { initDatabase } = require("./db");

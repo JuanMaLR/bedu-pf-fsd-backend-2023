@@ -4,11 +4,12 @@
   "description": "Backend proyecto final para bootcamp de Full Stack Developer JavaScript de BEDU-Santander 2023 Para acceder al frontend ir a ...",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "start:dev": "nodemon index.js",
+    "start": "node src/index.js",
+    "start:dev": "nodemon src/index.js",
     "lint": "eslint \"./**/*.js\" --quiet",
     "lintFull": "eslint \"./**/*.js\"",
-    "lintFix": "eslint --fix './**/*.js'"
+    "lintFix": "eslint --fix './**/*.js'",
+    "test": "jest"
   },
   "keywords": [],
   "author": "",
@@ -23,8 +24,10 @@
     "sequelize": "^6.33.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.5",
     "eslint": "^8.50.0",
     "eslint-config-prettier": "^9.0.0",
+    "jest": "^29.7.0",
     "nodemon": "^3.0.1",
     "prettier": "3.0.3"
   }
