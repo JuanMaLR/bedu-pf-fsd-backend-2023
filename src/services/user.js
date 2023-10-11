@@ -1,10 +1,10 @@
 const User = require("../models/user");
 
-exports.obtainUsers = function () {
+exports.findAll = function () {
 	return User.findAll();
 };
 
-exports.obtainUserById = function (id) {
+exports.findById = function (id) {
 	return User.findByPk(id);
 };
 
