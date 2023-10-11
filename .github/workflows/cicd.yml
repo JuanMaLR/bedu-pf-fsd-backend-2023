@@ -1,0 +1,32 @@
+#Nombre del workflow
+name: Continuous Integration / Continuous Delivery
+#En un push de cualquier rama
+#on: [push] #Para indicar cuando se va a correr el proceso
+
+#Con esta se hace sólo en la configuración de push a master/main
+on:
+  push:
+    branches:
+      - main
+
+#Job es un proceso que va a hacer
+#CI -> Correr las pruebas
+jobs:
+  #Nombre del proceso
+  continuous-integration:
+    #El proceso va a ejecutarse en una instancia/contenedor de ubuntu
+    runs-on: ubuntu-latest
+    steps:
+      #Clona el repo
+      #Yo puedo usar el workflow de alguien más (GitHub actions marketplace)
+      #https://github.com/marketplace?type=actions
+      - name: Clonar la última version del código
+        uses: actions/checkout@v4
+
+      - name: Ejecutar las pruebas en un ambiente de nodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+
+      - run: npm install
+      
