@@ -1,10 +1,10 @@
 const User = require("../models/user");
 
-exports.obtainUsers = function () {
+exports.findAll = function () {
 	return User.findAll();
 };
 
-exports.obtainUserById = function (id) {
+exports.findById = function (id) {
 	return User.findByPk(id);
 };
 
@@ -23,4 +23,12 @@ exports.update = async function (id, data) {
 exports.deleteById = async function (id) {
 	const user = await User.findByPk(id);
 	await user.destroy();
+};
+
+exports.findByEmail = function (email) {
+	return User.findOne({
+		where: {
+			email,
+		},
+	});
 };
