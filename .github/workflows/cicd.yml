@@ -23,10 +23,9 @@ jobs:
       - name: Clonar la última version del código
         uses: actions/checkout@v4
 
-      - name: Ejecutar las pruebas en un ambiente de nodeJS
+      - name: Configurar un ambiente de nodeJS
         uses: actions/setup-node@v3
         with:
           node-version: 18
 
       - run: npm install
-      
