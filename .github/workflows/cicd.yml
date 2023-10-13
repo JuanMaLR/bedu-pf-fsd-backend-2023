@@ -49,6 +49,7 @@ jobs:
   #Nota: Reverse proxy para cuando sólo tienes un puerto abierto en el server
 
   continuous-delivery:
+    needs: continuous-integration
     runs-on: ubuntu-latest
     steps: 
       #Generar llave nueva para poder configurar GitHub Actions 
@@ -67,10 +68,13 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
+          #Si instalamos node con nvm necesitamos hacer unos pasos adicionales (export y source)
           script: | #Para continuar la ejecución de otros comandos
+            export NVM_DIR=~/.nvm
+            source ~/.nvm/nvm.sh
             cd bedu-pf-fsd-backend-2023
             git pull origin main
             npm install --production
             pm2 restart src/index.js
-
+            
 
