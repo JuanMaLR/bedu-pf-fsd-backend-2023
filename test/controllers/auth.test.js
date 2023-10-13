@@ -36,7 +36,10 @@ describe("Auth Controller Unit Test", () => {
 			// Assert
 			expect(response.status).toHaveBeenCalledWith(200);
 			expect(response.json).toHaveBeenCalledWith({
-				jwt: "esto-es-un-jwt-xd",
+				data: {jwt: "esto-es-un-jwt-xd"},
+				http_status_code: 200,
+    			status: "succes",
+    			text: "inicio de sesion exitoso"
 			});
 		});
 
@@ -59,9 +62,10 @@ describe("Auth Controller Unit Test", () => {
 
 			expect(response.status).toHaveBeenCalledWith(400);
 			expect(response.json).toHaveBeenCalledWith({
+				http_status_code: 400,
 				message: "Email o contraseña inválidos",
 				messagedev: "No se encontro el usuario en la base de datos",
-				code: "ERR_AUTH",
+				status: "ERR_AUTH",
 			});
 		});
 
@@ -88,9 +92,10 @@ describe("Auth Controller Unit Test", () => {
 
 			expect(response.status).toHaveBeenCalledWith(400);
 			expect(response.json).toHaveBeenCalledWith({
+				http_status_code: 400,
 				message: "Email o contraseña inválidos",
 				messagedev: "No se encontro el usuario en la base de datos",
-				code: "ERR_AUTH",
+				status: "ERR_AUTH",
 			});
 		});
 	});
