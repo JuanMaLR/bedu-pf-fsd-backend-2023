@@ -12,10 +12,21 @@ module.exports = sequelize.define(
       type: DataTypes.STRING(30),
       allowNull: false,
     },
+    fullName: {
+      type: DataTypes.VIRTUAL,
+      get() {
+        return `${this.firstName} ${this.lastName}`;
+      },
+    },
     email: {
       type: DataTypes.STRING(50),
       allowNull: false,
       unique: true,
+      validate: {
+        isEmail: {
+          msg: 'Correo electrónico no válido',
+        },
+      },
     },
     password: {
       type: DataTypes.STRING(60),
