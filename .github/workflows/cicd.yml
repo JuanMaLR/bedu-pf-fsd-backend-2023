@@ -30,3 +30,47 @@ jobs:
 
       - run: npm install
       - run: npm test
+
+  #sudo apt update -> Sync de repos (fetch/pull)
+  #sudo apt upgrade -> Actualizar las versiones 
+  #Instalar Node en Ubuntu (buscar tutorial en internet)
+  #Clonar repo (requieres llave ssh -> ssh-keygen -t rsa -b 4096 -C "Servidor Digital Ocean") se recomienda que las llaves se guarden en el directorio .ssh (entrar ahí antes de ejecutar el comando) - usar nombre del archivo por defecto
+  #Copiar llave pública (.pub) ir a GitHub (en tu repo): settings -> deploy keys -> new (aplica repos públicos y privados)
+  #No usar passphrase
+  #ssh git@github.com -> Debe salir el nombre del repo adecuado (el que tiene nuestro proyecto) -> Salte con exit
+  #Clona el repo y entrar al directorio 
+  #npm i --production -> Instalar dependencias (no las de desarrollo) 
+  #Agregar archivo de ambiente (.env)
+  #sudo npm i -g pm2 -> Para el deploy resiliente 
+  #pm2 start src/index.js --name "API BEDU plus"
+  #pm2 list -> Para ver los procesos y su estatus 
+  #pm2 logs 0 --err -> Para ver si hay algún error (0 es el indicador del proceso)
+  #pm2 restart 0 -> Cuando hagas un cambio en el código debes reiniciar pm2
+  #Nota: Reverse proxy para cuando sólo tienes un puerto abierto en el server
+
+  continuous-delivery:
+    runs-on: ubuntu-latest
+    steps: 
+      #Generar llave nueva para poder configurar GitHub Actions 
+      #ssh-keygen -t rsa -b 4096 -C "Deploy GitHub actions" (ponerle un nuevo nombre al archivo: github-actions)
+      #cat github-actions.pub >> authorized_keys -> Añadir al archivo de authorized_keys la llave pública recien creada (.pub)
+      #Abrir (leer) llave privada y copiar su contenido
+      #Ir a GitHub -> Settings -> Secrets and variables -> Actions (secrets) -> New repository secret
+      #Esto se hace para datos sensibles como llave privada, ip del server, etc.
+      #SSH_PRIVATE_KEY -> Pego el contenido de la llave privada 
+      #SSH_HOST -> Dirección ip pública del server (sin http)
+      #SSH_USERNAME -> Usuario (es el que viene antes del arroba en el comando de ssh root@ip)
+      - name: Deploy on server
+        uses: appleboy/ssh-action@v1.0.0 #Me permite conectarme a un servidor por medio de ssh
+        #Hace la instalación de ssh y demás
+        with: 
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USERNAME }}
+          script: | #Para continuar la ejecución de otros comandos
+            cd bedu-pf-fsd-backend-2023
+            git pull origin main
+            npm install --production
+            pm2 restart src/index.js
+
+
