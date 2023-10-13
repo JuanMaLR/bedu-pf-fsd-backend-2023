@@ -17,5 +17,6 @@ exports.login = async function (request, response) {
         code: 'ERR_AUTH',
       });
     }
+    throw e;
   }
 };

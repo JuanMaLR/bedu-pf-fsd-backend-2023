@@ -10,6 +10,6 @@ exports.compare = async function (text, hash) {
     return bcrypt.compare(text, hash);
 }
 
-exports.sign = async function(user) {
+exports.sign = function(user) {
     return jwt.sign({ id: user.id, email: user.email }, process.env.JWT_SECRET);
 }

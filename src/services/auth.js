@@ -1,5 +1,5 @@
 const { findByEmail } = require('./user');
-const { compare, sign } = require('../services/security');
+const { compare, sign } = require('./security');
 const AuthException = require('../exceptions');
 
 exports.authenticate = async function (credentials) {
