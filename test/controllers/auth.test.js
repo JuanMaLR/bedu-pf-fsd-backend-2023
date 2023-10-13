@@ -13,7 +13,7 @@ describe("Auth Controller Unit Test", () => {
 			const request = {
 				body: {
 					email: "jujuan27@hotmail.com",
-					password: "Amigo41*sdf",
+					password: "Amigo41*dfs",
 				},
 			};
 
@@ -25,7 +25,7 @@ describe("Auth Controller Unit Test", () => {
 			findByEmail.mockResolvedValueOnce({
 				id: 1,
 				email: "jujuan27@hotmail.com",
-				password: "Amigo41*sdf",
+				password: "$2b$10$728ahfCGrynh42Jtv0YYPuNbW1lL1QLrfrsYZ2MXJgXzqS55TjJN2",
 			});
 
 			sign.mockReturnValue("esto-es-un-jwt-xd");

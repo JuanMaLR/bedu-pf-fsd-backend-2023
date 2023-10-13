@@ -11,7 +11,7 @@ exports.findById = function (id) {
 
 exports.insert = async function (data) {
 	data.password = await hash(data.password);
-	const employer = Employer.create(data);
+	const employer = await Employer.create(data);
 	delete employer.dataValues.password;
 	return employer;
 };

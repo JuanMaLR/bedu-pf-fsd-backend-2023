@@ -27,7 +27,7 @@ exports.findByPhoneNumber = function (phoneNumber) {
 
 exports.insert = async function (data) {
 	data.password = await hash(data.password);
-	const user = User.create(data);
+	const user = await User.create(data);
 	delete user.dataValues.password;
 	return user;
 };
