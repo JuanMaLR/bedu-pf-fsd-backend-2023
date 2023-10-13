@@ -69,9 +69,9 @@ jobs:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           #Si instalamos node con nvm necesitamos hacer unos pasos adicionales (export y source)
+          #export NVM_DIR=~/.nvm
+          #source ~/.nvm/nvm.sh
           script: | #Para continuar la ejecución de otros comandos
-            export NVM_DIR=~/.nvm
-            source ~/.nvm/nvm.sh
             cd bedu-pf-fsd-backend-2023
             git pull origin main
             npm install --production
