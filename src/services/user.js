@@ -1,4 +1,5 @@
 const User = require("../models/user");
+const { hash } = require('./security');
 
 exports.findAll = function () {
 	return User.findAll();
@@ -24,11 +25,15 @@ exports.findByPhoneNumber = function (phoneNumber) {
 	});
 };
 
-exports.insert = function (data) {
+exports.insert = async function (data) {
+	data.password = await hash(data.password);
 	return User.create(data);
 };
 
 exports.update = async function (id, data) {
+	if(data.password){
+		data.password = await hash(data.password);
+	}
 	await User.update(data, {
 		where: {
 			id,
