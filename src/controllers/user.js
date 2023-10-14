@@ -30,7 +30,7 @@ exports.getUser = async function (request, response) {
 
   let _response = new handleResponse();
   if (user) {
-    const dataValues = user;
+    const dataValues = user.dataValues;
     delete dataValues.password;
     delete dataValues.createdAt;
     delete dataValues.updatedAt;
@@ -57,7 +57,7 @@ exports.createUser = async function (request, response) {
       .json(_response.getByErrorType(userWithEmail ? ERR_EMAIL : ERR_PHONE_NUMBER));
     return;
   } else {
-    const { dataValues } = await insert(userData);
+    const dataValues = await insert(userData);
 
     delete dataValues.password;
     delete dataValues.createdAt;
