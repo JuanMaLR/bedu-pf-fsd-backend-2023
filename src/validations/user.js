@@ -45,3 +45,7 @@ exports.loginSchema = Joi.object({
     })
     .required(),
 });
+
+exports.paramsSchema = Joi.object({
+	id: Joi.number().required(),
+});
