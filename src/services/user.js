@@ -1,9 +1,9 @@
 const User = require('../models/user');
 const { hash } = require('./security');
 const { Op } = require('sequelize');
-const { querysPreprocesor } = require('../hooks/queryHandler.js');
 const { paginate } = require('../hooks/paginate.js');
-const columnsUser = ['id', 'firstName', 'lastName', 'fullName', 'email', 'phoneNumber'];
+const { Query } = require('../hooks/queryHandler.js');
+const userQuery = new Query(['id', 'firstName', 'lastName', 'fullName', 'email', 'phoneNumber']);
 
 exports.findByEmail = function (email) {
   return User.findOne({
@@ -22,20 +22,16 @@ exports.findByPhoneNumber = function (phoneNumber) {
   });
 };
 
-exports.findAll = async function (querys) {
+exports.findAll = async function ({ page, perPage, ...querys }) {
   try {
-    const { columns, pagination } = querysPreprocesor(querys, columnsUser);
-    const data = await paginate(User, pagination.page, pagination.perPage, {
+    const likeOperation = userQuery.setQueryOperations(querys, Op.like);
+    const data = await paginate(User, page, perPage, {
       attributes: ['id', 'firstName', 'lastName', 'fullName', 'email', 'phoneNumber'],
-      where: columns.map(({ field, value }) => ({
-        [field]: {
-          [Op.like]: `%${value}%`,
-        },
-      })),
+      where: likeOperation,
     });
     return data;
   } catch (error) {
-    return error;
+    console.log(error);
   }
 };
 
@@ -49,14 +45,11 @@ exports.findById = async function (id) {
 };
 
 exports.totalItems = async function (querys) {
-  const { columns } = querysPreprocesor(querys, columnsUser);
+  const likeOperation = userQuery.setQueryOperations(querys, Op.like);
+
   try {
     const totalItems = await User.count({
-      where: columns.map(({ field, value }) => ({
-        [field]: {
-          [Op.like]: `%${value}%`,
-        },
-      })),
+      where: likeOperation,
     });
 
     return totalItems;

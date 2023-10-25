@@ -6,8 +6,6 @@ exports.Query = class QuerysPreprocesor {
   querysPreprocesor(querys) {
     const _querys = {
       columns: [],
-      pagination: [],
-      aditionals: [],
     };
     for (let key in querys) {
       if (this.model.includes(key)) _querys.columns.push({ field: key, value: querys[key] });

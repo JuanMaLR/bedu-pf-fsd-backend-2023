@@ -1,19 +1,24 @@
 const Post = require('../models/post');
 const { Op } = require('sequelize');
-const { querysPreprocesor } = require('../hooks/queryHandler.js');
 const { paginate } = require('../hooks/paginate.js');
-const columnsPost = ['id', 'positionName', 'description', 'requirements', 'responsibilities', 'location', 'isActive'];
+const { Query } = require('../hooks/queryHandler.js');
+const columnsPost = [
+  'id',
+  'positionName',
+  'description',
+  'requirements',
+  'responsibilities',
+  'location',
+  'isActive',
+];
+const userPost = new Query(columnsPost);
 
-exports.findAll = async function (querys) {
+exports.findAll = async function ({ page, perPage, ...querys }) {
   try {
-    const { columns, pagination } = querysPreprocesor(querys, columnsPost);
-    const data = await paginate(Post, pagination.page, pagination.perPage, {
+    const likeOperation = userPost.setQueryOperations(querys, Op.like);
+    const data = await paginate(Post, page, perPage, {
       attributes: columnsPost,
-      where: columns.map(({ field, value }) => ({
-        [field]: {
-          [Op.like]: `%${value}%`,
-        },
-      })),
+      where: likeOperation,
     });
     return data;
   } catch (error) {
@@ -31,14 +36,10 @@ exports.findById = async function (id) {
 };
 
 exports.totalItems = async function (querys) {
-  const { columns } = querysPreprocesor(querys, columnsPost);
+  const likeOperation = userPost.setQueryOperations(querys, Op.like);
   try {
     const totalItems = await Post.count({
-      where: columns.map(({ field, value }) => ({
-        [field]: {
-          [Op.like]: `%${value}%`,
-        },
-      })),
+      where: likeOperation,
     });
 
     return totalItems;
