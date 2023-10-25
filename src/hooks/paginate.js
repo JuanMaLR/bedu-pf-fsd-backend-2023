@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 const getOffset = (page, limit) => {
   return page * limit - limit;
 };
