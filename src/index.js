@@ -2,6 +2,7 @@
 require('dotenv').config();
 
 //Imports
+const { CORS_ORIGIN } = process.env;
 const userRouter = require('./routers/user');
 const authRouter = require('./routers/auth');
 const employerRouter = require('./routers/employer');
@@ -13,10 +14,17 @@ const unknownError = require('./middlewares/unknown-error');
 const { initDatabase } = require('./db');
 initDatabase();
 
+const cors = require('cors');
 const express = require('express');
 const app = express();
 
 app.use(express.json());
+app.use(cors());
+
+const corsOptions = {
+  origin: CORS_ORIGIN,
+};
+app.options('*', cors(corsOptions));
 
 //Routes
 app.use(userRouter);
