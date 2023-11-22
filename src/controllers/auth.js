@@ -8,10 +8,9 @@ exports.login = async function (request, response) {
   const { email, password } = request.body;
   const _response = new handleResponse('succes', {}, 200, 'inicio de sesion exitoso');
 
-  const { fullName } = await findByEmail(email);
-
   try {
     const token = await authenticate({ email, password });
+    const { fullName } = await findByEmail(email);
     _response.data = { jwt: token, email, fullName };
     response.status(200).json(_response.get());
   } catch (e) {
