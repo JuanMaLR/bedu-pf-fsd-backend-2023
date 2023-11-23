@@ -62,9 +62,6 @@ const {
  *    createEmployer:
  *      type: object
  *      properties:
- *        id:
- *          type: integer
- *          description: Employer id
  *        name:
  *          type: string
  *          description: Name of the employer
