@@ -10,6 +10,9 @@ const columnsPost = [
   'responsibilities',
   'location',
   'isActive',
+  'createdAt',
+  'positionRoll',
+  'companyName',
 ];
 const userPost = new Query(columnsPost);
 
