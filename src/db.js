@@ -28,11 +28,16 @@ Post.belongsTo(Employer);
 async function seed() {
 	// eslint-disable-next-line no-undef
 	await Promise.allSettled([
-		PositionType.create({ id: JOB_TYPES.FULL_TIME, name: "FULL_TIME" }),
-		PositionType.create({ id: JOB_TYPES.PART_TIME, name: "PART_TIME" }),
-		PositionType.create({ id: JOB_TYPES.INTERN, name: "INTERN" }),
-		PositionType.create({ id: JOB_TYPES.UNPAID, name: "UNPAID" })
-	]);
+		PositionType.create({ id: JOB_TYPES.FULL_TIME, name: "Full time" }),
+		PositionType.create({ id: JOB_TYPES.PART_TIME, name: "Part time" }),
+		PositionType.create({ id: JOB_TYPES.INTERN, name: "Intern" }),
+		PositionType.create({ id: JOB_TYPES.UNPAID, name: "Unpaid" })
+	]).then(() => {
+		console.log("Seed successful");
+	})
+	.catch(e => {
+		console.log(e);
+	});
 }
 
 exports.initDatabase = async function () {

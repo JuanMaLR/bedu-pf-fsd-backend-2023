@@ -10,8 +10,8 @@ exports.login = async function (request, response) {
 
   try {
     const token = await authenticate({ email, password });
-    const { fullName } = await findByEmail(email);
-    _response.data = { jwt: token, email, fullName };
+    const { fullName, id } = await findByEmail(email);
+    _response.data = { jwt: token, email, fullName, id };
     response.status(200).json(_response.get());
   } catch (e) {
     if (e instanceof AuthException) {
