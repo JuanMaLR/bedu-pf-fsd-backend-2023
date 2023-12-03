@@ -3,7 +3,7 @@ const { sequelize } = require("./sequelize");
 
 module.exports = sequelize.define("positionType", {
     name: {
-        type: DataTypes.ENUM('Tiempo completo', 'Medio tiempo', 'Prácticas', 'Servicio Social'),
+        type: DataTypes.ENUM('Full time', 'Part time', 'Intern', 'Unpaid'),
         allowNull: false,
     }, 
 });
